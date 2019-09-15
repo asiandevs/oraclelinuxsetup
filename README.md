@@ -10,9 +10,6 @@ actual live system.
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Summary Steps with this Ansible playbook are as below : 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# # Manage User Equivalency between all nodes of a cluster
-# Configuring Network Time Protocol (NTPD)
-# Setting shell limits
 # 1. Set kernel parameters
 # 2. Install required operating system packages
 # 3. Disable firewalls
