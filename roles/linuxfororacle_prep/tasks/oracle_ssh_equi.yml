@@ -1,0 +1,35 @@
+---
+# ------------------------------------------------------------------
+#        configure user equivalence for OS oracle user 
+# (1) Generate SSH keys 
+# (2) Fetch the keyfile from one server to another
+# (3) Copy the key add to authorized_keys
+# ------------------------------------------------------------------
+- block:
+  - name: SSH KeyGen command
+    tags: run
+    shell: >
+      ssh-keygen -q -b 2048 -t rsa -N "" -C "creating SSH" -f ~/.ssh/id_rsa
+      creates="~/.ssh/id_rsa"
+
+  - name: Fetch the keyfile from one server to another
+    tags: run
+    fetch:
+      src: "~/.ssh/id_rsa.pub"
+      dest: "buffer/{{ansible_hostname}}-id_rsa.pub"
+      flat: yes
+
+  - name: Copy the key add to authorized_keys using Ansible module
+    tags: run
+    authorized_key:
+      user: oracle
+      state: present
+      key: "{{ lookup('file','buffer/{{item}}-id_rsa.pub')}}"
+    when: "item != ansible_hostname"
+    with_items:
+      - "{{ groups['opsdevt'] }}"
+
+  when: inventory_hostname in groups['opsdevt']
+  become:               yes
+  become_user:          oracle
+

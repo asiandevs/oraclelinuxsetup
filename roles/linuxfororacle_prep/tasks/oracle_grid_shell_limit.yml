@@ -1,0 +1,15 @@
+---
+# ------------------------------------------------------------------
+#         Create grid user shell limits
+# ------------------------------------------------------------------
+- name: Add grid user limits
+  lineinfile: dest=/etc/security/limits.conf line='{{ grid_user }} {{ item.limit }} {{ item.type}} {{ item.value }}'
+  with_items:
+    - { limit: 'soft', type: nofile, value: '{{ soft_no_file }}' }
+    - { limit: 'hard', type: nofile, value: '{{ hard_no_file }}' }
+    - { limit: 'soft', type: nproc, value: '{{ soft_nproc }}' }
+    - { limit: 'hard', type: nproc, value: '{{ hard_nproc }}' }
+    - { limit: 'soft', type: stack, value: '{{ soft_stack }}' }
+    - { limit: 'hard', type: stack, value: '{{ hard_stack }}' }
+    - { limit: 'soft', type: memlock, value: '{{ soft_memlock }}' }
+    - { limit: 'hard', type: memlock, value: '{{ hard_memlock }}' }

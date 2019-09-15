@@ -1,0 +1,7 @@
+---
+# ------------------------------------------------------------------
+#         Create OS users grid for Oracle Software Installation
+# ------------------------------------------------------------------
+- name: Create user
+  user: name={{ grid_user }} groups={{ item }} password="{{ gridpasswd | password_hash('sha512') }}"
+  with_items: "{{ oracle_groups }}"

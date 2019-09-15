@@ -1,0 +1,19 @@
+---
+# ------------------------------------------------------------------------------
+# Stop and Disable firewalld 
+# ------------------------------------------------------------------------------
+
+- name:                 "Disable Firewall for Oracle Software Installation"
+  block:
+  
+  - name:               "Stop and disable FIREWALLD"
+    service:
+      name:             firewalld
+      enabled:          no
+      state:            stopped
+
+  become:               yes
+  become_user:          root
+  tags:                 disable_firewall
+...
+

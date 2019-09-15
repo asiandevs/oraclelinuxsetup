@@ -1,0 +1,14 @@
+---
+# ------------------------------------------------------------------
+#         Create OS Groups for Oracle Software Installation
+# ------------------------------------------------------------------
+- name: Create groups
+  when: inventory_hostname in groups['opsdevt']
+  group: name="{{ item.group }} {{ item.name}}" gid="{{ item.group }} {{ item.gid}}" 
+  with_items:
+    - { group: 'install_group', name: oinstall, gid: '54321'}
+    - { group: 'DBA_GROUP', name: dba, gid: '54322'}
+    - { group: 'OPER_GROUP', name: oper, gid: '54323'}
+    - { group: 'OSDBA', name: asmdba, gid: '54327'}
+    - { group: 'OSOPER', name: asmoper, gid: '54328'}
+    - { group: 'OSASM', name: asmadmin, gid: '54329'}

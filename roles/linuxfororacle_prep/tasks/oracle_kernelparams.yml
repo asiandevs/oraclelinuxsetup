@@ -1,0 +1,12 @@
+---
+# ------------------------------------------------------------------------------
+# Setup necessary kernel parameters
+# ------------------------------------------------------------------------------
+- name: setup necessary kernel parameters 
+  become: yes
+  sysctl:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    state: present
+    reload: no
+  with_items: "{{ kernel_params }}"

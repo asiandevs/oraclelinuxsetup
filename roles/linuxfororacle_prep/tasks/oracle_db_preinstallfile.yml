@@ -1,0 +1,9 @@
+---
+# --------------------------------------------------------
+#        install preinstall oracle database file
+# ---------------------------------------------------------
+- name: install predbinstall rpm from a local file
+  when: inventory_hostname in groups['opsdevt']
+  yum:
+    name: "{{ stage_dir }}/oracle-database-preinstall-19c-1.0-1.el7.x86_64.rpm"
+    state: present

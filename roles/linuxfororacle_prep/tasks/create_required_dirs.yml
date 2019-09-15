@@ -1,0 +1,19 @@
+---
+# ----------------------------------------------------
+#        Create required directories
+# ----------------------------------------------------
+- name: create required directories
+  when: inventory_hostname in groups['opsdevt']
+  file:
+    path="{{ item }}"
+    state=directory
+    owner="{{ oracle_user }}"
+    group="{{ oracle_install_group }}"
+    mode=0775
+  with_items:
+    - "{{ root_dir }}"
+    - "{{ stage_dir }}"
+    - "{{ oracle_base }}"
+  tags:
+    - dbcreate_crdirs
+

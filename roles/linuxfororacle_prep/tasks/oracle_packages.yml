@@ -1,0 +1,8 @@
+---
+# ---------------------------------------
+# Install Oracle required packages
+# ---------------------------------------
+
+- name: Install required libraries
+  yum: name={{ packages_list }} state=present
+

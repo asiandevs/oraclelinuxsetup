@@ -1,0 +1,7 @@
+---
+# ------------------------------------------------------------------
+#         Create OS users for Oracle Software Installation
+# ------------------------------------------------------------------
+- name: Create user
+  user: name={{ oracle_user }} groups={{ item }} password="{{ oraclepasswd | password_hash('sha512') }}"
+  with_items: "{{ oracle_groups }}"

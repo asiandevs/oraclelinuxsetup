@@ -1,0 +1,11 @@
+---
+# -----------------------------------------------
+#        copy preinstall oracle database file
+# -----------------------------------------------
+- name: copy database pre install file to the target database server
+  when: inventory_hostname in groups['opsdevt']
+  remote_user: "{{ root_user }}"
+  copy: src=/etc/ansible/roles/linuxfororacle_prep/templates/{{ item }} dest={{ stage_dir }} mode=0775
+  with_items:
+    - oracle-database-preinstall-19c-1.0-1.el7.x86_64.rpm
+
