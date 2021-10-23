@@ -7,22 +7,22 @@ This Ansible Playbook can help you to to setup necessary configuration for insta
 Please make sure you modify the necessary variables as per your own setup. Always play/test into lower setup multiple times before implementing into the 
 actual live system.
 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+```
 Summary Steps with this Ansible playbook are as below : 
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# 1. Set kernel parameters
-# 2. Install required operating system packages
-# 3. Disable firewalls
-# 4. Create necessary OS groups and users
-# 5. Create necessary OS users
-# 6. Set up shell limit for oracle user
-# 7. Set up shell limit for grid user
-# 8. Update /etc/hosts file entry
-# 9. Create required directories
-# 10.configure user equivalence
-# 11. Install Oracle Pre-Install RPM
-# 12. Editing profile entries
 
+1. Set kernel parameters
+2. Install required operating system packages
+3. Disable firewalls
+4. Create necessary OS groups and users
+5. Create necessary OS users
+6. Set up shell limit for oracle user
+7. Set up shell limit for grid user
+8. Update /etc/hosts file entry
+9. Create required directories
+10.configure user equivalence
+11. Install Oracle Pre-Install RPM
+12. Editing profile entries
+```
 
 Tree Structure for this playbook is as below - 
 
