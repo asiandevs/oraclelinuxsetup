@@ -22,7 +22,7 @@ Summary Steps with this Ansible playbook are as below :
 # 10.configure user equivalence
 # 11. Install Oracle Pre-Install RPM
 # 12. Editing profile entries
-# ============================================================
+
 
 Tree Structure for this playbook is as below - 
 
@@ -203,8 +203,7 @@ opsdev                     : ok=17   changed=10   unreachable=0    failed=0
 
 ```
 
-Note: 
-i)  Modify parameters valuess based on your requirements [ /etc/ansible/roles/linuxfororacle_prep/vars/main.yml]
-ii) For testing  one can disable indiviaul playbook under main.yml file [/etc/ansible/roles/linuxfororacle_prep/tasks]
-iii) you can use with option --check / --diff / -v[v][v]
-To execute: 
+```diff
+- NOTE
+! Please do modify based on your own setup. This is purely based on my own lab setup. You can ask me any questions in relate to these playbooks - if you fork and modify to merge - let me know.
+```
