@@ -26,7 +26,31 @@ Summary Steps with this Ansible playbook are as below :
 
 Tree Structure for this playbook is as below - 
 
-[root@oel75 tasks]# tree /etc/ansible/roles/linuxfororacle_prep
+### Setup:
+ * OS: OEL 7.5 
+ * Ansible: ansible 2.7.6
+ * Database Version: Oracle 21.3 Linux64
+
+## Master Playbook:
+linux_oracle.yml
+
+role with this playbook: 
+
+roles                  | tasks
+---------------------- | --------------------------------------------------------
+linux_oracle.yml    |  **settings for installing Oracle Database**
+
+```
+[root@oel75 ansible]# cat linux_oracle.yml
+- hosts: opsdev
+  user: root
+
+  roles:
+   - linuxfororacle_prep
+```
+## Tree structure of this playbook
+```
+ tree /etc/ansible/roles/linuxfororacle_prep
 /etc/ansible/roles/linuxfororacle_prep
 ├── tasks
 │   ├── create_required_dirs.yml
@@ -50,12 +74,27 @@ Tree Structure for this playbook is as below -
 └── vars
     └── main.yml
 
+```
 
-Note: 
-i)  Modify parameters valuess based on your requirements [ /etc/ansible/roles/linuxfororacle_prep/vars/main.yml]
-ii) For testing  one can disable indiviaul playbook under main.yml file [/etc/ansible/roles/linuxfororacle_prep/tasks]
-iii) you can use with option --check / --diff / -v[v][v]
-To execute: 
+## Summary commands: 
+
+Configure an Ansible inventory file (example as below) 
+```
+[root@oel75 ansible]# cat ansible.cfg | grep inventory
+inventory = ./inventory
+[root@oel75 ansible]# cat inventory
+[devops]
+192.168.56.110
+
+[dbservers]
+192.168.56.102
+192.168.56.103
+```
+Note: Modify variables based on you setup or your requirements. 
+
+Run the playbook role "cdb_pdb_create.yml"
+```
+ansible-playbook cdb_pdb_create.yml  
 
 ansible-playbook linux_oracle.yml --check 
 ansible-playbook linux_oracle.yml --check --diff
@@ -161,3 +200,11 @@ changed: [opsdev]
 
 PLAY RECAP ******************************************************************************************************
 opsdev                     : ok=17   changed=10   unreachable=0    failed=0
+
+```
+
+Note: 
+i)  Modify parameters valuess based on your requirements [ /etc/ansible/roles/linuxfororacle_prep/vars/main.yml]
+ii) For testing  one can disable indiviaul playbook under main.yml file [/etc/ansible/roles/linuxfororacle_prep/tasks]
+iii) you can use with option --check / --diff / -v[v][v]
+To execute: 
